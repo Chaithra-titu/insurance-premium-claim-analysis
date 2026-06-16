@@ -1,0 +1,115 @@
+1)   CREATING THE TABLE 
+CREATE TABLE INSURANCE(Customer_ID varchar(50),Age int8,Gender varchar(50),Region varchar(50),Policy_Type varchar(50),Premium_Amount int8,Claim_Amount int8,Policy_Status varchar(50),Join_Date date);
+
+
+2) INSERTING VALUES INTO IT 
+INSERT INTO INSURANCE 
+(Customer_ID, Age, Gender, Region, Policy_Type, Premium_Amount, Claim_Amount, Policy_Status, Join_Date)
+VALUES
+('C001',25,'Male','South','Auto',10500,0,'Active','2021-02-02'),
+('C002',28,'Female','East','Life',11000,0,'Active','2022-03-03'),
+('C003',31,'Male','West','Travel',11500,0,'Active','2023-04-04'),
+('C004',34,'Female','North','Health',12000,0,'Active','2024-05-05'),
+('C005',37,'Male','South','Auto',12500,2500,'Active','2020-06-06'),
+('C006',40,'Female','East','Life',13000,0,'Active','2021-07-07'),
+('C007',43,'Male','West','Travel',13500,0,'Lapsed','2022-08-08'),
+('C008',46,'Female','North','Health',14000,0,'Active','2023-09-09'),
+('C009',49,'Male','South','Auto',14500,0,'Active','2024-10-10'),
+('C010',52,'Female','East','Life',15000,3000,'Active','2020-11-11'),
+('C011',55,'Male','West','Travel',15500,0,'Active','2021-12-12'),
+('C012',58,'Female','North','Health',16000,0,'Active','2022-01-13'),
+('C013',61,'Male','South','Auto',16500,0,'Active','2023-02-14'),
+('C014',24,'Female','East','Life',17000,0,'Lapsed','2024-03-15'),
+('C015',27,'Male','West','Travel',17500,3500,'Active','2020-04-16'),
+('C016',30,'Female','North','Health',18000,0,'Active','2021-05-17'),
+('C017',33,'Male','South','Auto',18500,0,'Active','2022-06-18'),
+('C018',36,'Female','East','Life',19000,0,'Active','2023-07-19'),
+('C019',39,'Male','West','Travel',19500,0,'Active','2024-08-20'),
+('C020',42,'Female','North','Health',20000,4000,'Active','2020-09-21'),
+('C021',45,'Male','South','Auto',20500,0,'Active','2021-10-22'),
+('C022',48,'Female','East','Life',21000,0,'Active','2022-11-23'),
+('C023',51,'Male','West','Travel',21500,0,'Active','2023-12-24'),
+('C024',54,'Female','North','Health',22000,0,'Active','2024-01-25'),
+('C025',57,'Male','South','Auto',22500,4500,'Active','2020-02-26'),
+('C026',60,'Female','East','Life',23000,0,'Active','2021-03-27'),
+('C027',23,'Male','West','Travel',23500,0,'Active','2022-04-28'),
+('C028',26,'Female','North','Health',24000,0,'Lapsed','2023-05-29'),
+('C029',29,'Male','South','Auto',24500,0,'Active','2024-06-02'),
+('C030',32,'Female','East','Life',25000,5000,'Active','2020-07-03'),
+('C031',35,'Male','West','Travel',25500,0,'Active','2021-08-04'),
+('C032',38,'Female','North','Health',26000,0,'Active','2022-09-05'),
+('C033',41,'Male','South','Auto',26500,0,'Active','2023-10-06'),
+('C034',44,'Female','East','Life',27000,0,'Active','2024-11-07'),
+('C035',47,'Male','West','Travel',27500,5500,'Lapsed','2020-12-08'),
+('C036',50,'Female','North','Health',28000,0,'Active','2021-01-09'),
+('C037',53,'Male','South','Auto',28500,0,'Active','2022-02-10'),
+('C038',56,'Female','East','Life',29000,0,'Active','2023-03-11'),
+('C039',59,'Male','West','Travel',29500,0,'Active','2024-04-12'),
+('C040',22,'Female','North','Health',30000,6000,'Active','2020-05-13'),
+('C041',25,'Male','South','Auto',30500,0,'Active','2021-06-14'),
+('C042',28,'Female','East','Life',31000,0,'Lapsed','2022-07-15'),
+('C043',31,'Male','West','Travel',31500,0,'Active','2023-08-16'),
+('C044',34,'Female','North','Health',32000,0,'Active','2024-09-17'),
+('C045',37,'Male','South','Auto',32500,6500,'Active','2020-10-18'),
+('C046',40,'Female','East','Life',33000,0,'Active','2021-11-19'),
+('C047',43,'Male','West','Travel',33500,0,'Active','2022-12-20'),
+('C048',46,'Female','North','Health',34000,0,'Active','2023-01-21'),
+('C049',49,'Male','South','Auto',34500,0,'Lapsed','2024-02-22'),
+('C050',52,'Female','East','Life',35000,7000,'Active','2020-03-23');
+
+
+3)FIND THE NUMBER OF CUSTOMERS WHOSE POLICY STATUS IS ACTIVE 
+SELECT COUNT(Policy_Status) FROM INSURANCE WHERE Policy_Status="Active";
+
+
+4)FIND THE NUMBER OF CUSTOMERS WHO HAVE NOT MADE ANY CLAIMS 
+SELECT COUNT(Claim_Amount) FROM INSURANCE WHERE Claim_Amount=0;
+
+
+5)CALCULATE THE TOTAL PREMIUM AMOUNT COLLECTED FROM ALL CUSTOMERS 
+SELECT sum(Premium_Amount) FROM INSURANCE;
+
+
+6)FIND THE AVERAGE CLAIMS AMOUNT ACROSS ALL CUSTOMERS
+SELECT AVG(Claim_Amount) FROM INSURANCE;
+
+
+7)IDENTIFY THE HIGHEST PREMIUM AMOUNT PAID BY A CUSTOMER
+SELECT MAX(Premium_Amount) FROM INSURANCE;
+
+
+8)DETERMINE THE NUMBER OF CUSTOMERS IN EACH REGION 
+SELECT Region,COUNT(Customer_Id) FROM INSURANCE GROUP BY  Region;
+
+
+9)FIND THE AVERAGE PREMIUM AMOUNT FOR EACH POLICY TYPE
+SELECT Policy_Type,AVG(Premium_Amount) FROM INSURANCE GROUP BY  Policy_Type;
+
+
+10)IDENTIFY POLICY TYPES HAVING MORE THAN FIVE CUSTOMERS 
+SELECT Policy_Type,COUNT(*) FROM INSURANCE GROUP BY Policy_Type HAVING COUNT(*)>5;
+
+
+11)FIND CUSTOMER WHOSE CLAIM AMOUNT EXCEEDS THEIR PREMIUM AMOUNT
+SELECT Premium_Amount,Claim_Amount 
+FROM INSURANCE WHERE Claim_Amount > Premium_Amount;
+
+
+12)CALCULATE THE PROFIT OR LOSS FOR EACH CUSTOMER BY SUBTRACTING CLAIM AMOUNT FROM PREMIUM AMOUNT
+SELECT Customer_Id,Premium_Amount - Claim_Amount as profitloss FROM INSURANCE;
+
+
+13)FIND TOP 3 HIGHEST PREMIUM AMOUNT
+SELECT Premium_Amount FROM INSURANCE ORDER BY Premium_Amount DESC LIMIT 3;
+
+
+14)DETERMINE THE CUSTOMER WITH THE SECOND HIGHEST PREMIUM AMOUNT
+SELECT  Customer_Id,MAX(Premium_Amount) AS SECOND_HIGHEST FROM INSURANCE group by Customer_Id ORDER BY SECOND_HIGHEST DESC LIMIT 1 OFFSET 1;
+
+
+15)IDENTIFY DUPLICATES CUSTOMER RECORDS,IF ANY EXIST
+SELECT Customer_Id,COUNT(*) FROM INSURANCE GROUP BY Customer_Id HAVING COUNT(*)>1;
+
+
+16)RANK CUSTOMERS BASED ON PREMIUM AMOUNT IN DESCENDING ORDER 
+SELECT Customer_id,Premium_Amount, rank() over( order by Premium_Amount desc)as ranking FROM INSURANCE;
