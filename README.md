@@ -7,7 +7,7 @@ This project analyzes insurance customer data to understand premium collection, 
 ## Tools Used
 
 - SQL
-- Power BI
+- Power BI  
 - Microsoft Excel
 
 ## Dataset
